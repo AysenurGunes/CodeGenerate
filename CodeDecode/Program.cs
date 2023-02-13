@@ -2,58 +2,83 @@
 {
     internal class Program
     {
-
+        /// <summary>
+        /// Öncelikle code karakter sayımıza göre uygun mu ona bakılır.
+        ///karakter paternde var mı bakılır
+        ///varsa index degeri alınıp diziye atılır
+        ///yoksa false döndürülür
+        ///varsa yeni dizi değerleri counter patternde kontrol edilir 
+        ///patterne uygunsa true döner patterndeki bir değerden bile buyukse false döner
+        /// </summary>
         private static readonly int[] counterPattern = { 18, 19, 11, 11, 22, 22, 14, 3 };
         private static readonly string[] codePattern = { "N", "2", "F", "K", "Z", "5", "D", "C", "3", "9", "T", "L", "G", "A", "7", "H", "P", "E", "X", "M", "Y", "4", "R" };
+
         static void Main(string[] args)
         {
             string answer = "";
-            while (answer.ToUpper()=="E")
+            while (answer.ToUpper() == "E")
             {
-                Console.WriteLine("kodun doğruluğunu test etmek için kodu girmek ister misiniz?-E(Evet)-H(Hayır)");
-                 answer = Console.ReadLine();
-                if (answer.ToUpper() == "E")
+                try
                 {
-                    Console.Write("Kodunuzu giriniz:");
-                    string answer2 = "";
-                    answer2 = Console.ReadLine();
-                    if (CodeControl(answer2))
+
+                    Console.WriteLine("kodun doğruluğunu test etmek için kodu girmek ister misiniz?-E(Evet)-H(Hayır)");
+                    answer = Console.ReadLine();
+                    if (answer.ToUpper() == "E")
                     {
-                        Console.WriteLine("Kodunuz doğrulanmıştır.");
+                        Console.Write("Kodunuzu giriniz:");
+                        string answer2 = "";
+                        answer2 = Console.ReadLine();
+                        if (CodeControl(answer2))
+                        {
+                            Console.WriteLine("Kodunuz doğrulanmıştır.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Kodunuz hatalıdır.");
+                        }
                     }
-                    else
-                    {
-                        Console.WriteLine("Kodunuz hatalıdır.");
-                    }
-                } 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Hata oluştu tekrar deneyiniz.");
+                    Console.WriteLine("kodun doğruluğunu test etmek için kodu girmek ister misiniz?-E(Evet)-H(Hayır)");
+                    answer = Console.ReadLine();
+                }
             }
         }
-       
+
         public static bool CodeControl(string code)
         {
             bool firstControl = false;
-            if (code.Length == 8)
+            try
             {
-                for (int i = 0; i < code.Length; i++)
+                if (code.Length == 8)
                 {
-                    firstControl = false;
-                    for (int j = 0; j < codePattern.Length; j++)
+                    for (int i = 0; i < code.Length; i++)
                     {
-                        if (codePattern[j] == code[i].ToString().ToUpper())
+                        firstControl = false;
+                        for (int j = 0; j < codePattern.Length; j++)
                         {
-                            if (counterPattern[i] >= j)
+                            if (codePattern[j] == code[i].ToString().ToUpper())
                             {
-                                firstControl = true;
-                                break;
+                                if (counterPattern[i] >= j)
+                                {
+                                    firstControl = true;
+                                    break;
+                                }
+
                             }
 
                         }
 
                     }
-
                 }
+                return firstControl;
             }
-            return firstControl;
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
