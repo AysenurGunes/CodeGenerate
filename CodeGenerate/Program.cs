@@ -22,22 +22,7 @@
                     }
                 }
                 Console.WriteLine(code);
-                Console.WriteLine("kodun doğruluğunu test etmek için kodu girmek ister misiniz?-E(Evet)-H(Hayır)");
-                string answer = Console.ReadLine();
-                if (answer.ToUpper() == "E")
-                {
-                    Console.Write("Kodunuzu giriniz:");
-                    string answer2 = "";
-                        answer2=Console.ReadLine();
-                    if (CodeControl(answer2))
-                    {
-                        Console.WriteLine("Kodunuz doğrulanmıştır.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Kodunuz hatalıdır.");
-                    }
-                }
+              
                 Console.WriteLine("Devam etmek istiyor musunuz?-E(Evet)-H(Hayır)");
                 Answer = Console.ReadLine();
                 if (lastCounterControl)
@@ -87,33 +72,6 @@
         //varsa yeni dizi değerleri counter patteernde kontrol edilir edilir
         //patterne uygunsa true döner patterndeki bir değerden bile buyukse false döner
 
-        //codun dogrulanması işlemi sunumsaloalrak kodda generatte hata var gibi gösteriyor.
-        //iki laibrary ekle bir generate digeri control yapsın 2 exe calıssın
-        public static bool CodeControl(string code)
-        {
-            bool firstControl = false;
-            if (code.Length == 8)
-            {
-                for (int i = 0; i < code.Length; i++)
-                {
-                    firstControl = false;
-                    for (int j = 0; j < codePattern.Length; j++)
-                    {
-                        if (codePattern[j] == code[i].ToString().ToUpper())
-                        {
-                            if (counterPattern[i] >= j)
-                            {
-                                firstControl = true;
-                                break;
-                            }
-
-                        }
-
-                    }
-
-                }
-            }
-            return firstControl;
-        }
+      
     }
 }
