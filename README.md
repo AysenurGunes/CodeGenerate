@@ -17,3 +17,5 @@
         ///yoksa false döndürülür
         ///varsa yeni dizi değerleri counter patternde kontrol edilir 
         ///patterne uygunsa true döner patterndeki bir değerden bile buyukse false döner
+        
+ Projeler direk exe den çalışrıtılabilir durumdadır. .net6 ile yazılmıştır.
